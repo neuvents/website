@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partial Conf | Neuvents – Organizing community tech events in south-eastern Europe</title>
+  <meta name="description" content="Neuvents organizes community tech events and conferences in South-Eastern Europe including Balkan Ruby, Partial Conf, and Ruby Banitsa.">
+  
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Partial Conf | Neuvents – Organizing community tech events in south-eastern Europe">
+  <meta property="og:description" content="Neuvents organizes community tech events and conferences in South-Eastern Europe including Balkan Ruby, Partial Conf, and Ruby Banitsa.">
+  <meta property="og:url" content="https://neuvents.com/partial-conf">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Roboto', 'sans-serif'],
+          },
+          colors: {
+            ink: '#272929',
+            paper: '#f5f5f5',
+          },
+          maxWidth: {
+            container: '1200px',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root { color-scheme: light; }
+    body { -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { letter-spacing: -0.01em; }
+
+    .link-underline { position: relative; display: inline-flex; align-items: center; gap: .5rem; font-weight: 500; padding-bottom: 4px; }
+    .link-underline::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: currentColor; transform-origin: left; transition: transform .35s ease; }
+    .link-underline:hover::after { transform: scaleX(.35); }
+    .link-underline .arrow { transition: transform .35s ease; }
+    .link-underline:hover .arrow { transform: translateX(4px); }
+
+    .swiper-pagination-bullet { width: 10px; height: 10px; background: #fff; opacity: .45; transition: opacity .3s, width .3s; }
+    .swiper-pagination-bullet-active { opacity: 1; width: 28px; border-radius: 6px; }
+    .swiper-button-next, .swiper-button-prev { color: #fff; width: 48px; height: 48px; background: rgba(0,0,0,.28); border-radius: 9999px; backdrop-filter: blur(4px); transition: background .3s; }
+    .swiper-button-next:hover, .swiper-button-prev:hover { background: rgba(0,0,0,.55); }
+    .swiper-button-next::after, .swiper-button-prev::after { font-size: 18px; font-weight: 700; }
+
+    #site-header { transition: background-color .35s ease, box-shadow .35s ease, padding .35s ease; }
+    #site-header.scrolled { background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 10px 30px -20px rgba(0,0,0,.35); }
+    #site-header.scrolled .nav-link { color: #272929; }
+    #site-header.scrolled .logo-white { opacity: 0; }
+    #site-header.scrolled .logo-black { opacity: 1; }
+    .logo-white, .logo-black { transition: opacity .3s ease; }
+    .logo-black { opacity: 0; }
+    .nav-link.nav-active { border-bottom: 2px solid currentColor; padding-bottom: 2px; }
+  </style>
+</head>
+<body class="bg-white text-ink font-sans min-h-screen flex flex-col">
+  
+  <header id="site-header" class="fixed top-0 left-0 w-full z-50 py-5">
+    <div class="max-w-container mx-auto px-6 md:px-10 flex justify-between items-center">
+      <a href="/" class="relative flex items-center h-9" aria-label="Neuvents home">
+        <img src="/images/000/000/050/original/logo-simple-white-sm.svg" alt="Neuvents" class="logo-white h-9 w-auto">
+        <img src="/images/000/000/053/original/logo-simple-black-sm.svg" alt="Neuvents" class="logo-black h-9 w-auto absolute inset-0">
+      </a>
+      <nav class="hidden md:flex items-center gap-9 text-sm font-medium">
+        <a href="/balkan-ruby" class="nav-link text-white/90 hover:opacity-70 transition">Balkan Ruby</a>
+        <a href="/partial-conf" class="nav-link text-white/90 hover:opacity-70 transition">Partial Conf</a>
+        <a href="/ruby-banitsa" class="nav-link text-white/90 hover:opacity-70 transition">Ruby Banitsa</a>
+        <a href="/euruko-2016" class="nav-link text-white/90 hover:opacity-70 transition">Euruko 2016</a>
+        <a href="/contacts" class="nav-link text-white/90 hover:opacity-70 transition">Contacts</a>
+      </nav>
+      <button id="menu-toggle" class="md:hidden relative w-10 h-10 -mr-2 text-white flex items-center justify-center" aria-label="Open menu" aria-expanded="false">
+        <svg class="menu-open w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-close w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-neutral-100">
+      <nav class="max-w-container mx-auto px-6 py-4 flex flex-col divide-y divide-neutral-100 text-ink font-medium">
+        <a href="/balkan-ruby" class="py-3">Balkan Ruby</a>
+        <a href="/partial-conf" class="py-3">Partial Conf</a>
+        <a href="/ruby-banitsa" class="py-3">Ruby Banitsa</a>
+        <a href="/euruko-2016" class="py-3">Euruko 2016</a>
+        <a href="/contacts" class="py-3">Contacts</a>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="flex-grow">
+    
+      <section class="relative min-h-[80vh] flex items-end text-left text-white overflow-hidden">
+        <img src="/images/000/000/077/original/IMG_2537.HEIC_copy.jpg" alt="" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/25"></div>
+        <div class="relative z-10 w-full max-w-container mx-auto px-6 md:px-10 pt-28 pb-16 md:pb-20">
+          <img src="/images/000/000/166/original/partial-logo.svg" class="h-14 md:h-16 mb-6 drop-shadow" alt="Logo">
+          <div class="flex flex-wrap gap-4">
+            
+            
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-paper text-ink py-24 px-6 md:px-10">
+        <div class="max-w-container mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+          <div class="md:col-span-4">
+            <h2 class="text-4xl md:text-5xl font-black">About the conference</h2>
+          </div>
+          <div class="md:col-span-8 space-y-6">
+            <div class="text-lg md:text-xl leading-relaxed font-light text-neutral-700"><p>Partial is a conference about modern functional programming languages and technologies for the web. Think <strong>Erlang</strong>, <strong>Elixir</strong>, <strong>Clojure</strong>, <strong>ClojureScript</strong>, <strong>Haskell</strong>, <strong>Elm</strong>,<strong>PureScript</strong>, <strong>F#</strong>, <strong>React</strong> and many more. It’s a conference that can get you outside your comfort zone and let you learn something new.</p></div>
+            <div class="pt-4"><a href="http://partialconf.com" target="_blank" class="inline-block font-bold text-lg border-b-2 border-current pb-1 hover:opacity-70 transition">Visit the website</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-paper text-ink py-20 px-6 md:px-10">
+        <div class="max-w-container mx-auto flex flex-wrap justify-center gap-16 md:gap-24">
+          
+            <div class="text-center flex flex-col items-center">
+              <img src="/images/000/000/042/original/users.svg" alt="" class="w-12 h-12 mb-4 filter ">
+              <div class="text-5xl md:text-6xl font-black mb-2">200+</div>
+              <div class="text-lg font-medium text-neutral-500 uppercase tracking-widest">Visitors</div>
+            </div>
+            <div class="text-center flex flex-col items-center">
+              <img src="/images/000/000/037/original/book-open.svg" alt="" class="w-12 h-12 mb-4 filter ">
+              <div class="text-5xl md:text-6xl font-black mb-2">20+</div>
+              <div class="text-lg font-medium text-neutral-500 uppercase tracking-widest">Talks</div>
+            </div>
+            <div class="text-center flex flex-col items-center">
+              <img src="/images/000/000/038/original/globe.svg" alt="" class="w-12 h-12 mb-4 filter ">
+              <div class="text-5xl md:text-6xl font-black mb-2">20+</div>
+              <div class="text-lg font-medium text-neutral-500 uppercase tracking-widest">Countries</div>
+            </div>
+            <div class="text-center flex flex-col items-center">
+              <img src="/images/000/000/039/original/command.svg" alt="" class="w-12 h-12 mb-4 filter ">
+              <div class="text-5xl md:text-6xl font-black mb-2">30+</div>
+              <div class="text-lg font-medium text-neutral-500 uppercase tracking-widest">Companies</div>
+            </div>
+        </div>
+      </section>
+
+      <section class="bg-ink text-white pt-16 pb-8 px-6 md:px-10">
+        <div class="max-w-container mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-4">Highlights</h2>
+          
+        </div>
+      </section>
+
+      <section class="bg-ink text-white pb-8 px-6 md:px-10">
+        <div class="max-w-container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          
+            <a href="https://www.youtube.com/watch?v=EMAgdJ5NVa0" target="_blank" rel="noopener" class="group block cursor-pointer">
+              <div class="relative aspect-video bg-neutral-200 overflow-hidden mb-4">
+                <img src="/images/000/000/071/card_horizontal/IMG_0207-1.jpg" alt="Anjana Vakil – Immutable Data Structures for Functional JS" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition duration-300">
+                  <div class="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center group-hover:scale-110 transition duration-300">
+                    <svg class="w-8 h-8 ml-1 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <h4 class="font-bold text-lg leading-tight group-hover:opacity-70 transition">Anjana Vakil – Immutable Data Structures for Functional JS</h4>
+            </a>
+            <a href="https://www.youtube.com/watch?v=N5vJ1Y2j0uI" target="_blank" rel="noopener" class="group block cursor-pointer">
+              <div class="relative aspect-video bg-neutral-200 overflow-hidden mb-4">
+                <img src="/images/000/000/070/card_horizontal/IMG_0205.HEIC_copy.jpg" alt="Michał Muskała – Actor Model in Elixir" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition duration-300">
+                  <div class="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center group-hover:scale-110 transition duration-300">
+                    <svg class="w-8 h-8 ml-1 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <h4 class="font-bold text-lg leading-tight group-hover:opacity-70 transition">Michał Muskała – Actor Model in Elixir</h4>
+            </a>
+            <a href="https://www.youtube.com/watch?v=09i4Y8Y_BrA" target="_blank" rel="noopener" class="group block cursor-pointer">
+              <div class="relative aspect-video bg-neutral-200 overflow-hidden mb-4">
+                <img src="/images/000/000/086/card_horizontal/IMG_2215.HEIC_copy.jpg" alt="Saša Jurić – Basic Guarantees of Erlang VM (BEAM)" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition duration-300">
+                  <div class="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center group-hover:scale-110 transition duration-300">
+                    <svg class="w-8 h-8 ml-1 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <h4 class="font-bold text-lg leading-tight group-hover:opacity-70 transition">Saša Jurić – Basic Guarantees of Erlang VM (BEAM)</h4>
+            </a>
+        </div>
+      </section>
+
+      <section class="bg-ink text-white pt-2 pb-12 px-6 md:px-10 text-center">
+        <div class="max-w-3xl mx-auto">
+          <a href="https://www.youtube.com/channel/UCVpxG-WuIMpWePw5IMExrhA/videos" target="_blank" class="inline-block bg-white text-black font-semibold px-8 py-4 rounded-sm hover:opacity-80 transition">View all videos</a>
+        </div>
+      </section>
+
+      <section class="bg-white text-ink pt-24 pb-12 px-6 md:px-10">
+        <div class="max-w-container mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-4">Past speakers include</h2>
+          
+        </div>
+      </section>
+
+      <section class="bg-white text-ink pb-24 px-6 md:px-10">
+        <div class="max-w-container mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-12">
+          
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/125/square/michal-ec3d900a.jpg" alt="Michał Muskała" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Michał Muskała</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Elixir</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/121/square/bozhidar-e80ed7ed.jpg" alt="Bozhidar Batskov" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Bozhidar Batskov</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Toptal</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/130/square/ilona-ea4241c9.png" alt="Ilona Demidenko" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Ilona Demidenko</h4>
+              <div class="text-sm font-light text-neutral-500"><p>React</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/133/square/sasa-ab25a033.png" alt="Saša Jurić" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Saša Jurić</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Elixir in Action</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/122/square/anjana-da854c8a.jpg" alt="Anjana Vakil" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Anjana Vakil</h4>
+              <div class="text-sm font-light text-neutral-500"><p>JS developer</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/132/square/radoslav-a641533c.png" alt="Radoslav Kirov" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Radoslav Kirov</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Google</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/123/square/anna-83de8899.jpg" alt="Anna Doubkova" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Anna Doubkova</h4>
+              <div class="text-sm font-light text-neutral-500"><p>React developer</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/126/square/yulia-5711139c.jpg" alt="Yulia Startsev" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Yulia Startsev</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Mozilla</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/120/square/nikolay-ca2997e4.png.jpeg" alt="Nikola Tsvetinov" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Nikola Tsvetinov</h4>
+              <div class="text-sm font-light text-neutral-500"><p>All things lambda</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/131/square/lisa-39e82b31.png" alt="Lisa Passing" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Lisa Passing</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Rust developer</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/124/square/pedro-8538e260.jpg" alt="Pedro Costa" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Pedro Costa</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Subvisual</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/127/square/bojana-10d1b6bf.png" alt="Bojana Popovska" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1">Bojana Popovska</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Netcera</p></div>
+            </div>
+        </div>
+      </section>
+
+      <section class="bg-white text-ink pt-24 pb-12 px-6 md:px-10">
+        <div class="max-w-container mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-4">Partners</h2>
+          
+        </div>
+      </section>
+
+      <section class="bg-white text-ink pb-24 px-6 md:px-10">
+        <div class="max-w-container mx-auto">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-6">
+            <a href="#" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+              <img src="/images/000/000/112/original/receipt-bank-logo.svg" alt="Partner" class="h-9 w-auto max-w-[160px] object-contain">
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+              <img src="/images/000/000/063/original/emerchantpay-logo.svg" alt="Partner" class="h-9 w-auto max-w-[160px] object-contain">
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+              <img src="/images/000/000/118/original/toptal-1cb4f188.svg" alt="Partner" class="h-9 w-auto max-w-[160px] object-contain">
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+              <img src="/images/000/000/115/original/mozilla-9b0a0d7d.svg" alt="Partner" class="h-9 w-auto max-w-[160px] object-contain">
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+              <img src="/images/000/000/044/original/stars-group-logo.svg" alt="Partner" class="h-9 w-auto max-w-[160px] object-contain">
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+              <img src="/images/000/000/113/original/aeternity-b0022491.svg" alt="Partner" class="h-9 w-auto max-w-[160px] object-contain">
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+              <img src="/images/000/000/119/original/puzl-b35b715e.svg" alt="Partner" class="h-9 w-auto max-w-[160px] object-contain">
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+              <img src="/images/000/000/116/original/hacksoft-eb2dd997.svg" alt="Partner" class="h-9 w-auto max-w-[160px] object-contain">
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+              <img src="/images/000/000/117/original/tick42-7242bc8e.svg" alt="Partner" class="h-9 w-auto max-w-[160px] object-contain">
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+              <img src="/images/000/000/114/original/subvisual-ff47be83.svg" alt="Partner" class="h-9 w-auto max-w-[160px] object-contain">
+            </a>
+          </div>
+        </div>
+      </section>
+
+  </main>
+
+  
+  <footer class="bg-ink text-white mt-auto">
+    <div class="max-w-container mx-auto px-6 md:px-10 pt-16 pb-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-14 border-b border-white/10">
+        <div class="md:col-span-5">
+          <img src="/images/000/000/050/original/logo-simple-white-sm.svg" alt="Neuvents" class="h-9 mb-5">
+          <p class="text-sm text-white/60 leading-relaxed max-w-xs mb-6">Organizing community tech events and conferences in south-eastern Europe since 2016.</p>
+          <form action="//balkanruby.us16.list-manage.com/subscribe/post?u=690a4f9d71c3a29f39792b453&amp;id=d13d0bd575" method="post" target="_blank" novalidate class="max-w-[260px]">
+            <label for="footer-email" class="block text-[11px] font-bold uppercase tracking-[0.18em] text-white/40 mb-2.5">Subscribe for news</label>
+            <div class="flex">
+              <input id="footer-email" type="email" name="EMAIL" required placeholder="you@awesome.conf" class="min-w-0 flex-1 bg-white/5 border border-white/15 rounded-l-md px-3.5 py-2 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition">
+              <div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_690a4f9d71c3a29f39792b453_d13d0bd575" tabindex="-1" value=""></div>
+              <button type="submit" name="subscribe" class="shrink-0 bg-white text-ink text-sm font-semibold px-4 py-2 rounded-r-md hover:bg-neutral-200 transition">Subscribe</button>
+            </div>
+          </form>
+        </div>
+        <div class="md:col-span-3">
+          <h4 class="text-xs font-bold uppercase tracking-[0.18em] text-white/40 mb-5">Events</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li><a href="/balkan-ruby" class="hover:text-white transition">Balkan Ruby</a></li>
+            <li><a href="/partial-conf" class="hover:text-white transition">Partial Conf</a></li>
+            <li><a href="/ruby-banitsa" class="hover:text-white transition">Ruby Banitsa</a></li>
+            <li><a href="/euruko-2016" class="hover:text-white transition">Euruko 2016</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <h4 class="text-xs font-bold uppercase tracking-[0.18em] text-white/40 mb-5">Company</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li><a href="/contacts" class="hover:text-white transition">Contacts</a></li>
+            <li><a href="/legal-information" class="hover:text-white transition">Legal</a></li>
+            <li><a href="/privacy" class="hover:text-white transition">Privacy</a></li>
+            <li><a href="/returns" class="hover:text-white transition">Returns</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <h4 class="text-xs font-bold uppercase tracking-[0.18em] text-white/40 mb-5">Community</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li><a href="http://berlincodeofconduct.org/" target="_blank" rel="noopener" class="hover:text-white transition">Code of Conduct</a></li>
+            <li><a href="mailto:hi@neuvents.com" class="hover:text-white transition">hi@neuvents.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
+        <p>© 2018. Neuvents Ltd.</p>
+        <p>launched by <a href="http://raketadesign.com" target="_blank" rel="noopener" class="text-white/80 hover:text-white transition underline underline-offset-2">raketa</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.swiper-container:not(.gallery-slider)').forEach(el => {
+        new Swiper(el, {
+          loop: true,
+          autoplay: { delay: parseInt(el.dataset.autoplay) || 5000, disableOnInteraction: false },
+          pagination: { el: el.querySelector('.swiper-pagination'), clickable: true },
+          navigation: { nextEl: el.querySelector('.swiper-button-next'), prevEl: el.querySelector('.swiper-button-prev') },
+        });
+      });
+      document.querySelectorAll('.gallery-slider').forEach(el => {
+        new Swiper(el, {
+          loop: true,
+          slidesPerView: 1,
+          spaceBetween: 16,
+          breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+          pagination: { el: el.parentElement.querySelector('.swiper-pagination'), clickable: true },
+        });
+      });
+
+      const header = document.getElementById('site-header');
+      if (header) {
+        const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 60);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            const open = menu.classList.toggle('hidden') === false;
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.querySelector('.menu-open').classList.toggle('hidden', open);
+            toggle.querySelector('.menu-close').classList.toggle('hidden', !open);
+            if (open) header.classList.add('scrolled'); else onScroll();
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

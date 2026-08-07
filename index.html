@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Homepage | Neuvents – Organizing community tech events in south-eastern
+      Europe
+    </title>
+    <meta
+      name="description"
+      content="Neuvents is a Sofia based company that specializes in organizing IT events and conferences. The company was founded in 2016 and has organized several conferences – Euruko 2016, PartialConf and Balkan Ruby. Neuvents also runs the local Ruby meetup, called Ruby Banitsa."
+    />
+
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/favicon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Homepage | Neuvents – Organizing community tech events in south-eastern Europe"
+    />
+    <meta
+      property="og:description"
+      content="Neuvents is a Sofia based company that specializes in organizing IT events and conferences. The company was founded in 2016 and has organized several conferences – Euruko 2016, PartialConf and Balkan Ruby. Neuvents also runs the local Ruby meetup, called Ruby Banitsa."
+    />
+    <meta property="og:url" content="https://neuvents.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Roboto", "sans-serif"],
+            },
+            colors: {
+              ink: "#272929",
+              paper: "#f5f5f5",
+            },
+            maxWidth: {
+              container: "1200px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      body {
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        letter-spacing: -0.01em;
+      }
+
+      /* Text link with animated underline (faithful "btn-text" look) */
+      .link-underline {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+        padding-bottom: 4px;
+      }
+      .link-underline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 100%;
+        background: currentColor;
+        transform-origin: left;
+        transition: transform 0.35s ease;
+      }
+      .link-underline:hover::after {
+        transform: scaleX(0.35);
+      }
+      .link-underline .arrow {
+        transition: transform 0.35s ease;
+      }
+      .link-underline:hover .arrow {
+        transform: translateX(4px);
+      }
+
+      /* Swiper theming */
+      .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        opacity: 0.45;
+        transition:
+          opacity 0.3s,
+          width 0.3s;
+      }
+      .swiper-pagination-bullet-active {
+        opacity: 1;
+        width: 28px;
+        border-radius: 6px;
+      }
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: #fff;
+        width: 48px;
+        height: 48px;
+        background: rgba(0, 0, 0, 0.28);
+        border-radius: 9999px;
+        backdrop-filter: blur(4px);
+        transition: background 0.3s;
+      }
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        background: rgba(0, 0, 0, 0.55);
+      }
+      .swiper-button-next::after,
+      .swiper-button-prev::after {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      /* Header scroll state */
+      #site-header {
+        transition:
+          background-color 0.35s ease,
+          box-shadow 0.35s ease,
+          padding 0.35s ease;
+      }
+      #site-header.scrolled {
+        background: #fff;
+        box-shadow:
+          0 1px 0 rgba(0, 0, 0, 0.06),
+          0 10px 30px -20px rgba(0, 0, 0, 0.35);
+      }
+      #site-header.scrolled .nav-link {
+        color: #272929;
+      }
+      #site-header.scrolled .logo-white {
+        opacity: 0;
+      }
+      #site-header.scrolled .logo-black {
+        opacity: 1;
+      }
+      .logo-white,
+      .logo-black {
+        transition: opacity 0.3s ease;
+      }
+      .logo-black {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-ink font-sans min-h-screen flex flex-col">
+    <!-- ===== Header ===== -->
+    <main class="flex-grow">
+      <!-- ===== Hero (matches live site: full-bleed image, bottom-left logo + title) ===== -->
+      <section
+        class="relative min-h-[90vh] flex items-end text-left text-white overflow-hidden"
+      >
+        <img
+          src="/images/000/000/094/original/37879446982_07ea03bd06_o.jpg"
+          alt=""
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"
+        ></div>
+        <div
+          class="relative z-10 w-full max-w-container mx-auto px-6 md:px-10 pb-20 md:pb-24"
+        >
+          <img
+            src="/images/000/000/050/original/logo-simple-white-sm.svg"
+            class="h-16 md:h-20 mb-6 drop-shadow"
+            alt="Neuvents logo"
+          />
+          <h1 class="text-6xl md:text-8xl font-black drop-shadow-sm">Neuvents</h1>
+        </div>
+      </section>
+
+      <!-- ===== About us ===== -->
+      <section id="about" class="bg-white py-24 md:py-28 px-6 md:px-10">
+        <div
+          class="max-w-container mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-start"
+        >
+          <div class="md:col-span-4">
+            <span
+              class="block text-sm font-bold uppercase tracking-[0.18em] text-neutral-400 mb-4"
+              >Who we are</span
+            >
+            <h2 class="text-4xl md:text-5xl font-black leading-[1.05]">
+              About us
+            </h2>
+          </div>
+          <div class="md:col-span-8 space-y-8 md:pt-10">
+            <p
+              class="text-xl md:text-2xl leading-relaxed font-light text-neutral-700"
+            >
+              Neuvents is a Sofia based company that specializes in organizing
+              IT events and conferences. The company was founded in 2016 and has
+              organized several conferences – Euruko 2016, PartialConf and
+              Balkan Ruby. Neuvents also runs the local Ruby meetup, called Ruby
+              Banitsa.
+            </p>
+            <a href="#events" class="link-underline text-lg text-ink">
+              Learn more
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Events slider ===== -->
+      <section id="events" class="relative w-full overflow-hidden bg-ink">
+        <div class="swiper-container events-slider" data-autoplay="5000">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide relative h-[78vh] min-h-[520px] flex items-center bg-black"
+            >
+              <img
+                src="/images/000/000/070/original/IMG_0205.HEIC_copy.jpg"
+                alt="Balkan Ruby"
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20"
+              ></div>
+              <div
+                class="relative z-10 w-full max-w-container mx-auto px-6 md:px-10 text-white"
+              >
+                <span
+                  class="inline-block text-xs font-bold uppercase tracking-[0.18em] text-white/60 mb-4"
+                  >Conference</span
+                >
+                <h3 class="text-5xl md:text-7xl font-black mb-6 max-w-3xl">
+                  Balkan Ruby
+                </h3>
+                <p
+                  class="text-lg md:text-xl font-light mb-9 max-w-2xl leading-relaxed text-white/90"
+                >
+                  <strong class="font-semibold">Balkan Ruby</strong> is a brand
+                  new conference, dedicated to Ruby and satellite technologies.
+                  We aim to introduce the local communities to each other and
+                  invite companies and developers from all over Europe to visit
+                  the Balkan region, learn new technologies and share ideas with
+                  us.
+                </p>
+                <a
+                  href="/balkan-ruby"
+                  class="inline-block bg-white text-ink font-semibold px-8 py-4 rounded-sm hover:bg-neutral-200 transition"
+                  >Learn more</a
+                >
+              </div>
+            </div>
+
+            <div
+              class="swiper-slide relative h-[78vh] min-h-[520px] flex items-center bg-black"
+            >
+              <img
+                src="/images/000/000/076/original/IMG_2540.HEIC_copy.jpg"
+                alt="Partial Conf"
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20"
+              ></div>
+              <div
+                class="relative z-10 w-full max-w-container mx-auto px-6 md:px-10 text-white"
+              >
+                <span
+                  class="inline-block text-xs font-bold uppercase tracking-[0.18em] text-white/60 mb-4"
+                  >Conference</span
+                >
+                <h3 class="text-5xl md:text-7xl font-black mb-6 max-w-3xl">
+                  Partial Conf
+                </h3>
+                <p
+                  class="text-lg md:text-xl font-light mb-9 max-w-2xl leading-relaxed text-white/90"
+                >
+                  Partial is a conference about modern functional programming
+                  languages and technologies for the web. Think
+                  <strong class="font-semibold">Erlang</strong>,
+                  <strong class="font-semibold">Elixir</strong>,
+                  <strong class="font-semibold">Clojure</strong>,
+                  <strong class="font-semibold">ClojureScript</strong>,
+                  <strong class="font-semibold">Haskell</strong>,
+                  <strong class="font-semibold">Elm</strong>,
+                  <strong class="font-semibold">PureScript</strong>,
+                  <strong class="font-semibold">F#</strong>,
+                  <strong class="font-semibold">React</strong> and many more.
+                  It’s a conference that can get you outside your comfort zone
+                  and let you learn something new.
+                </p>
+                <a
+                  href="/partial-conf"
+                  class="inline-block bg-white text-ink font-semibold px-8 py-4 rounded-sm hover:bg-neutral-200 transition"
+                  >Learn more</a
+                >
+              </div>
+            </div>
+
+            <div
+              class="swiper-slide relative h-[78vh] min-h-[520px] flex items-center bg-black"
+            >
+              <img
+                src="/images/000/000/087/original/IMGP8667.jpg"
+                alt="Ruby Banitsa"
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20"
+              ></div>
+              <div
+                class="relative z-10 w-full max-w-container mx-auto px-6 md:px-10 text-white"
+              >
+                <span
+                  class="inline-block text-xs font-bold uppercase tracking-[0.18em] text-white/60 mb-4"
+                  >Meetup</span
+                >
+                <h3 class="text-5xl md:text-7xl font-black mb-6 max-w-3xl">
+                  Ruby Banitsa
+                </h3>
+                <p
+                  class="text-lg md:text-xl font-light mb-9 max-w-2xl leading-relaxed text-white/90"
+                >
+                  Ruby Banitsa is an event filled with Ruby and Banitsa. We get
+                  together in Sofia, Bulgaria, nom some fresh Banitsa and talk.
+                  All this in a casual setting.
+                </p>
+                <a
+                  href="/ruby-banitsa"
+                  class="inline-block bg-white text-ink font-semibold px-8 py-4 rounded-sm hover:bg-neutral-200 transition"
+                  >Learn more</a
+                >
+              </div>
+            </div>
+
+            <div
+              class="swiper-slide relative h-[78vh] min-h-[520px] flex items-center bg-black"
+            >
+              <img
+                src="/images/000/000/158/original/xavier-noria-talk.jpg"
+                alt="Euruko 2016"
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20"
+              ></div>
+              <div
+                class="relative z-10 w-full max-w-container mx-auto px-6 md:px-10 text-white"
+              >
+                <span
+                  class="inline-block text-xs font-bold uppercase tracking-[0.18em] text-white/60 mb-4"
+                  >Conference</span
+                >
+                <h3 class="text-5xl md:text-7xl font-black mb-6 max-w-3xl">
+                  Euruko 2016
+                </h3>
+                <p
+                  class="text-lg md:text-xl font-light mb-9 max-w-2xl leading-relaxed text-white/90"
+                >
+                  <strong class="font-semibold">EuRuKo</strong> is an annual
+                  non-profit tech conference with an accent on Ruby and
+                  satellite technologies. In 2016 it was held in Sofia and
+                  hosted by Neuvents.
+                </p>
+                <a
+                  href="/euruko-2016"
+                  class="inline-block bg-white text-ink font-semibold px-8 py-4 rounded-sm hover:bg-neutral-200 transition"
+                  >Learn more</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </section>
+
+      <!-- ===== Great ____ / Features ===== -->
+      <section class="bg-paper py-24 md:py-28 px-6 md:px-10">
+        <div class="max-w-container mx-auto">
+          <h2 class="text-4xl md:text-5xl font-black mb-14 md:mb-16">
+            Great <span class="text-neutral-300">____________</span>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14">
+            <div>
+              <h3 class="text-2xl font-black mb-4">Community</h3>
+              <p class="text-lg font-light leading-relaxed text-neutral-600">
+                We believe that gathering people from different backgrounds will
+                encourage them to exchange ideas an knowledge.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-2xl font-black mb-4">Content</h3>
+              <p class="text-lg font-light leading-relaxed text-neutral-600">
+                From language creators to open source enthusiasts, our events
+                host one of the best speakers about Ruby, Elixir and functional
+                programming.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-2xl font-black mb-4">Partners</h3>
+              <p class="text-lg font-light leading-relaxed text-neutral-600">
+                We work with the best companies in Europe to deliver superb
+                experience. You won't find the aggtessive hiring tricks – it's a
+                safe heaven.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Get involved: alternating image + text ===== -->
+      <section class="bg-white">
+        <!-- Speaker -->
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+          <div class="relative min-h-[340px] lg:min-h-[560px] order-1">
+            <img
+              src="/images/000/000/093/original/IMGP9498.jpg"
+              alt="A speaker on stage at a Neuvents conference"
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+          <div
+            class="flex items-center order-2 px-6 md:px-14 lg:px-16 py-16 lg:py-24"
+          >
+            <div class="max-w-lg">
+              <span
+                class="block text-sm font-bold uppercase tracking-[0.18em] text-neutral-400 mb-4"
+                >Speak</span
+              >
+              <h2 class="text-3xl md:text-5xl font-black leading-[1.05] mb-6">
+                How to become a speaker?
+              </h2>
+              <p
+                class="text-lg leading-relaxed font-light text-neutral-700 mb-8"
+              >
+                We are constantly looking for curious speakers from all over the
+                world. Speaking at a conference is a great personal development.
+                If you want to share your knowledge and teach others we are
+                always around to help you get a stage.
+              </p>
+              <a
+                href="mailto:hi@neuvents.com?subject=Speaker"
+                class="link-underline text-lg text-ink"
+              >
+                Get in touch
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Partner -->
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+          <div
+            class="relative min-h-[340px] lg:min-h-[560px] order-1 lg:order-2"
+          >
+            <img
+              src="/images/000/000/074/original/IMG_0221-1.jpg"
+              alt="Attendees networking at a Neuvents event"
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+          <div
+            class="flex items-center order-2 lg:order-1 px-6 md:px-14 lg:px-16 py-16 lg:py-24 lg:justify-end"
+          >
+            <div class="max-w-lg">
+              <span
+                class="block text-sm font-bold uppercase tracking-[0.18em] text-neutral-400 mb-4"
+                >Partner</span
+              >
+              <h2 class="text-3xl md:text-5xl font-black leading-[1.05] mb-6">
+                How to become a partner?
+              </h2>
+              <p
+                class="text-lg leading-relaxed font-light text-neutral-700 mb-8"
+              >
+                We've worked with startups and large companies such as Github,
+                Deliveroo and Toptal. Our events are great opportunity to
+                present your business in front of the best developers from
+                Europe. It's also a perfect place for your tech team to learn
+                new tricks and become part of the community.
+              </p>
+              <a
+                href="mailto:hi@neuvents.com?subject=Partner"
+                class="link-underline text-lg text-ink"
+              >
+                Learn more
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Volunteer -->
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+          <div class="relative min-h-[340px] lg:min-h-[560px] order-1">
+            <img
+              src="/images/000/000/073/original/IMG_0256-1.jpg"
+              alt="Volunteers helping at a Neuvents conference"
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+          <div
+            class="flex items-center order-2 px-6 md:px-14 lg:px-16 py-16 lg:py-24"
+          >
+            <div class="max-w-lg">
+              <span
+                class="block text-sm font-bold uppercase tracking-[0.18em] text-neutral-400 mb-4"
+                >Volunteer</span
+              >
+              <h2 class="text-3xl md:text-5xl font-black leading-[1.05] mb-6">
+                How can I help?
+              </h2>
+              <p
+                class="text-lg leading-relaxed font-light text-neutral-700 mb-8"
+              >
+                We simply cannot deliver those events without our beloved
+                volunteers. Helping at a conference is a wonderful way of
+                finding new friends, getting into the comminity and learning a
+                ton of stuff. After all, we all got started as volunteers.
+              </p>
+              <a
+                href="mailto:hi@neuvents.com?subject=Volunteer"
+                class="link-underline text-lg text-ink"
+              >
+                Learn more
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-ink text-white mt-auto">
+    <div class="max-w-container mx-auto px-6 md:px-10 pt-16 pb-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-14 border-b border-white/10">
+        <div class="md:col-span-5">
+          <img src="/images/000/000/050/original/logo-simple-white-sm.svg" alt="Neuvents" class="h-9 mb-5">
+          <p class="text-sm text-white/60 leading-relaxed max-w-xs mb-6">Organizing community tech events and conferences in south-eastern Europe since 2016.</p>
+          <form action="//balkanruby.us16.list-manage.com/subscribe/post?u=690a4f9d71c3a29f39792b453&amp;id=d13d0bd575" method="post" target="_blank" novalidate class="max-w-[260px]">
+            <label for="footer-email" class="block text-[11px] font-bold uppercase tracking-[0.18em] text-white/40 mb-2.5">Subscribe for news</label>
+            <div class="flex">
+              <input id="footer-email" type="email" name="EMAIL" required placeholder="you@awesome.conf" class="min-w-0 flex-1 bg-white/5 border border-white/15 rounded-l-md px-3.5 py-2 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition">
+              <div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_690a4f9d71c3a29f39792b453_d13d0bd575" tabindex="-1" value=""></div>
+              <button type="submit" name="subscribe" class="shrink-0 bg-white text-ink text-sm font-semibold px-4 py-2 rounded-r-md hover:bg-neutral-200 transition">Subscribe</button>
+            </div>
+          </form>
+        </div>
+        <div class="md:col-span-3">
+          <h4 class="text-xs font-bold uppercase tracking-[0.18em] text-white/40 mb-5">Events</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li><a href="/balkan-ruby" class="hover:text-white transition">Balkan Ruby</a></li>
+            <li><a href="/partial-conf" class="hover:text-white transition">Partial Conf</a></li>
+            <li><a href="/ruby-banitsa" class="hover:text-white transition">Ruby Banitsa</a></li>
+            <li><a href="/euruko-2016" class="hover:text-white transition">Euruko 2016</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <h4 class="text-xs font-bold uppercase tracking-[0.18em] text-white/40 mb-5">Company</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li><a href="/contacts" class="hover:text-white transition">Contacts</a></li>
+            <li><a href="/legal-information" class="hover:text-white transition">Legal</a></li>
+            <li><a href="/privacy" class="hover:text-white transition">Privacy</a></li>
+            <li><a href="/returns" class="hover:text-white transition">Returns</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <h4 class="text-xs font-bold uppercase tracking-[0.18em] text-white/40 mb-5">Community</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li><a href="http://berlincodeofconduct.org/" target="_blank" rel="noopener" class="hover:text-white transition">Code of Conduct</a></li>
+            <li><a href="mailto:hi@neuvents.com" class="hover:text-white transition">hi@neuvents.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
+        <p>© 2018. Neuvents Ltd.</p>
+        <p>launched by <a href="http://raketadesign.com" target="_blank" rel="noopener" class="text-white/80 hover:text-white transition underline underline-offset-2">raketa</a></p>
+      </div>
+    </div>
+  </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Slider
+        document.querySelectorAll(".events-slider").forEach((el) => {
+          new Swiper(el, {
+            loop: true,
+            autoplay: {
+              delay: parseInt(el.dataset.autoplay) || 5000,
+              disableOnInteraction: false,
+            },
+            pagination: {
+              el: el.querySelector(".swiper-pagination"),
+              clickable: true,
+            },
+            navigation: {
+              nextEl: el.querySelector(".swiper-button-next"),
+              prevEl: el.querySelector(".swiper-button-prev"),
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

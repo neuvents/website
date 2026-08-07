@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balkan Ruby | Neuvents – Organizing community tech events in south-eastern Europe</title>
+  <meta name="description" content="Neuvents organizes community tech events and conferences in South-Eastern Europe including Balkan Ruby, Partial Conf, and Ruby Banitsa.">
+  
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Balkan Ruby | Neuvents – Organizing community tech events in south-eastern Europe">
+  <meta property="og:description" content="Neuvents organizes community tech events and conferences in South-Eastern Europe including Balkan Ruby, Partial Conf, and Ruby Banitsa.">
+  <meta property="og:url" content="https://neuvents.com/balkan-ruby">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Roboto', 'sans-serif'],
+          },
+          colors: {
+            ink: '#272929',
+            paper: '#f5f5f5',
+          },
+          maxWidth: {
+            container: '1200px',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root { color-scheme: light; }
+    body { -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { letter-spacing: -0.01em; }
+
+    .link-underline { position: relative; display: inline-flex; align-items: center; gap: .5rem; font-weight: 500; padding-bottom: 4px; }
+    .link-underline::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: currentColor; transform-origin: left; transition: transform .35s ease; }
+    .link-underline:hover::after { transform: scaleX(.35); }
+    .link-underline .arrow { transition: transform .35s ease; }
+    .link-underline:hover .arrow { transform: translateX(4px); }
+
+    .swiper-pagination-bullet { width: 10px; height: 10px; background: #fff; opacity: .45; transition: opacity .3s, width .3s; }
+    .swiper-pagination-bullet-active { opacity: 1; width: 28px; border-radius: 6px; }
+    .swiper-button-next, .swiper-button-prev { color: #fff; width: 48px; height: 48px; background: rgba(0,0,0,.28); border-radius: 9999px; backdrop-filter: blur(4px); transition: background .3s; }
+    .swiper-button-next:hover, .swiper-button-prev:hover { background: rgba(0,0,0,.55); }
+    .swiper-button-next::after, .swiper-button-prev::after { font-size: 18px; font-weight: 700; }
+
+    #site-header { transition: background-color .35s ease, box-shadow .35s ease, padding .35s ease; }
+    #site-header.scrolled { background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 10px 30px -20px rgba(0,0,0,.35); }
+    #site-header.scrolled .nav-link { color: #272929; }
+    #site-header.scrolled .logo-white { opacity: 0; }
+    #site-header.scrolled .logo-black { opacity: 1; }
+    .logo-white, .logo-black { transition: opacity .3s ease; }
+    .logo-black { opacity: 0; }
+    .nav-link.nav-active { border-bottom: 2px solid currentColor; padding-bottom: 2px; }
+  </style>
+</head>
+<body class="bg-white text-ink font-sans min-h-screen flex flex-col">
+  
+  <header id="site-header" class="fixed top-0 left-0 w-full z-50 py-5">
+    <div class="max-w-container mx-auto px-6 md:px-10 flex justify-between items-center">
+      <a href="/" class="relative flex items-center h-9" aria-label="Neuvents home">
+        <img src="/images/000/000/050/original/logo-simple-white-sm.svg" alt="Neuvents" class="logo-white h-9 w-auto">
+        <img src="/images/000/000/053/original/logo-simple-black-sm.svg" alt="Neuvents" class="logo-black h-9 w-auto absolute inset-0">
+      </a>
+      <nav class="hidden md:flex items-center gap-9 text-sm font-medium">
+        <a href="/balkan-ruby" class="nav-link text-white/90 hover:opacity-70 transition">Balkan Ruby</a>
+        <a href="/partial-conf" class="nav-link text-white/90 hover:opacity-70 transition">Partial Conf</a>
+        <a href="/ruby-banitsa" class="nav-link text-white/90 hover:opacity-70 transition">Ruby Banitsa</a>
+        <a href="/euruko-2016" class="nav-link text-white/90 hover:opacity-70 transition">Euruko 2016</a>
+        <a href="/contacts" class="nav-link text-white/90 hover:opacity-70 transition">Contacts</a>
+      </nav>
+      <button id="menu-toggle" class="md:hidden relative w-10 h-10 -mr-2 text-white flex items-center justify-center" aria-label="Open menu" aria-expanded="false">
+        <svg class="menu-open w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="menu-close w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-neutral-100">
+      <nav class="max-w-container mx-auto px-6 py-4 flex flex-col divide-y divide-neutral-100 text-ink font-medium">
+        <a href="/balkan-ruby" class="py-3">Balkan Ruby</a>
+        <a href="/partial-conf" class="py-3">Partial Conf</a>
+        <a href="/ruby-banitsa" class="py-3">Ruby Banitsa</a>
+        <a href="/euruko-2016" class="py-3">Euruko 2016</a>
+        <a href="/contacts" class="py-3">Contacts</a>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="flex-grow">
+    
+      <section class="relative min-h-[80vh] flex items-end text-left text-white overflow-hidden">
+        <img src="/images/000/000/070/original/IMG_0205.HEIC_copy.jpg" alt="Balkan Ruby" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/25"></div>
+        <div class="relative z-10 w-full max-w-container mx-auto px-6 md:px-10 pt-28 pb-16 md:pb-20">
+          <img src="/images/000/000/164/original/balkan-ruby-logo.svg" class="h-14 md:h-16 mb-6 drop-shadow" alt="Logo">
+          <h1 class="text-5xl md:text-7xl font-black mb-6 drop-shadow-md">Balkan Ruby</h1>
+          <div class="flex flex-wrap gap-4">
+            <a href="https://balkanruby.com/" target="_blank" rel="noopener" class="inline-block bg-white text-black font-semibold px-8 py-4 rounded-sm shadow hover:bg-neutral-100 transition">See latest edition</a>
+            
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-paper text-ink py-24 px-6 md:px-10">
+        <div class="max-w-container mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+          <div class="md:col-span-4">
+            <h2 class="text-4xl md:text-5xl font-black">About the conference</h2>
+          </div>
+          <div class="md:col-span-8 space-y-6">
+            <div class="text-lg md:text-xl leading-relaxed font-light text-neutral-700"><p><strong>Balkan Ruby</strong> is a conference dedicated to Ruby and satellite technologies, bringing the local and international communities together in Sofia. After a five-year break the conference returned in 2024, and has been running every year since.</p></div>
+            <div class="pt-4"><a href="https://balkanruby.com/" target="_blank" rel="noopener" class="inline-block font-bold text-lg border-b-2 border-current pb-1 hover:opacity-70 transition">Visit balkanruby.com</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-paper text-ink pt-24 pb-12 px-6 md:px-10">
+        <div class="max-w-container mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-4">Stats</h2>
+          
+        </div>
+      </section>
+
+      <section class="bg-paper text-ink py-20 px-6 md:px-10">
+        <div class="max-w-container mx-auto flex flex-wrap justify-center gap-16 md:gap-24">
+          
+            <div class="text-center flex flex-col items-center">
+              <img src="/images/000/000/042/original/users.svg" alt="" class="w-12 h-12 mb-4 filter ">
+              <div class="text-5xl md:text-6xl font-black mb-2">300+</div>
+              <div class="text-lg font-medium text-neutral-500 uppercase tracking-widest">Visitors</div>
+            </div>
+            <div class="text-center flex flex-col items-center">
+              <img src="/images/000/000/037/original/book-open.svg" alt="" class="w-12 h-12 mb-4 filter ">
+              <div class="text-5xl md:text-6xl font-black mb-2">26</div>
+              <div class="text-lg font-medium text-neutral-500 uppercase tracking-widest">Talks</div>
+            </div>
+            <div class="text-center flex flex-col items-center">
+              <img src="/images/000/000/038/original/globe.svg" alt="" class="w-12 h-12 mb-4 filter ">
+              <div class="text-5xl md:text-6xl font-black mb-2">19</div>
+              <div class="text-lg font-medium text-neutral-500 uppercase tracking-widest">Countries</div>
+            </div>
+            <div class="text-center flex flex-col items-center">
+              <img src="/images/000/000/039/original/command.svg" alt="" class="w-12 h-12 mb-4 filter ">
+              <div class="text-5xl md:text-6xl font-black mb-2">52+</div>
+              <div class="text-lg font-medium text-neutral-500 uppercase tracking-widest">Companies</div>
+            </div>
+        </div>
+      </section>
+
+      <section class="bg-ink text-white pt-20 pb-20 px-6 md:px-10">
+        <div class="max-w-container mx-auto">
+          <h2 class="text-4xl md:text-5xl font-black mb-4 text-center">Highlights</h2>
+          <p class="text-lg font-light text-white/60 mb-12 text-center max-w-2xl mx-auto">A few favourites from the latest edition. Watch the full set of talks on our YouTube channel.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10">
+            <a href="https://www.youtube.com/watch?v=qno7_uhiIuA&list=PLRbI7hyJV3kA" target="_blank" rel="noopener" class="group block cursor-pointer">
+              <div class="relative aspect-video bg-neutral-800 overflow-hidden mb-4">
+                <img src="https://i.ytimg.com/vi/qno7_uhiIuA/hqdefault.jpg" alt="Onur Ozer – Your tech stack doesn&#x27;t matter" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition duration-300">
+                  <div class="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center group-hover:scale-110 transition duration-300">
+                    <svg class="w-8 h-8 ml-1 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <h4 class="font-bold text-lg leading-tight group-hover:opacity-70 transition">Onur Ozer – Your tech stack doesn&#x27;t matter</h4>
+            </a>
+            <a href="https://www.youtube.com/watch?v=hRW4zmMw1rs&list=PLRbI7hyJV3kA" target="_blank" rel="noopener" class="group block cursor-pointer">
+              <div class="relative aspect-video bg-neutral-800 overflow-hidden mb-4">
+                <img src="https://i.ytimg.com/vi/hRW4zmMw1rs/hqdefault.jpg" alt="Marco Roth – HTML-Aware ERB: The Path to Reactive Rendering" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition duration-300">
+                  <div class="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center group-hover:scale-110 transition duration-300">
+                    <svg class="w-8 h-8 ml-1 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <h4 class="font-bold text-lg leading-tight group-hover:opacity-70 transition">Marco Roth – HTML-Aware ERB: The Path to Reactive Rendering</h4>
+            </a>
+            <a href="https://www.youtube.com/watch?v=_JnaNU2a5lk&list=PLRbI7hyJV3kA" target="_blank" rel="noopener" class="group block cursor-pointer">
+              <div class="relative aspect-video bg-neutral-800 overflow-hidden mb-4">
+                <img src="https://i.ytimg.com/vi/_JnaNU2a5lk/hqdefault.jpg" alt="Vladimir Dementyev – Drop your app/services!" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition duration-300">
+                  <div class="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center group-hover:scale-110 transition duration-300">
+                    <svg class="w-8 h-8 ml-1 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <h4 class="font-bold text-lg leading-tight group-hover:opacity-70 transition">Vladimir Dementyev – Drop your app/services!</h4>
+            </a>
+          </div>
+          <div class="text-center mt-12">
+            <a href="https://www.youtube.com/@balkanruby6171/videos" target="_blank" rel="noopener" class="inline-block bg-white text-black font-semibold px-8 py-4 rounded-sm hover:opacity-80 transition">See all videos</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white text-ink pt-24 pb-12 px-6 md:px-10">
+        <div class="max-w-container mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-4">Speakers</h2>
+          <p class="text-lg font-light text-neutral-500 max-w-2xl mx-auto">The people who took the stage across our 2018, 2019, 2024, 2025 and 2026 editions.</p>
+        </div>
+      </section>
+
+      <section class="bg-white text-ink pb-24 px-6 md:px-10">
+        <div class="max-w-container mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-8 gap-y-12">
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/onur-ozer.jpg" alt="Onur Ozer" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Onur Ozer</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Your tech stack doesn&#x27;t matter</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/vladimir-dementyev.jpg" alt="Vladimir Dementyev" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Vladimir Dementyev</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Drop your app/services!</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/jean-boussier.jpg" alt="Jean Boussier" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Jean Boussier</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Multiprocessing is the most efficient way to serve Rails apps</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/hans-schnedlitz.jpg" alt="Hans Schnedlitz" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Hans Schnedlitz</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Gems Are Overrated: or How I Learned to Stop Worrying and Love Copy-Pasting</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/roman-samoilov.png" alt="Roman Samoilov" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Roman Samoilov</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Rage Under the Hood: Breaking Rack and Embracing Fibers</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/galia-kraicheva.jpg" alt="Galia Kraicheva" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Galia Kraicheva</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Stop Tuning Hyperparameters. Start Looking at Your Data.</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/giovanni-panasiti.jpg" alt="Giovanni Panasiti" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Giovanni Panasiti</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Rails Engines Are the Best-Kept Secret (And You&#x27;re Using Them Wrong)</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/fernando-mart-nez.png" alt="Fernando Martínez" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Fernando Martínez</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Ruby off Rails</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/wojtek-wrona.jpg" alt="Wojtek Wrona" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Wojtek Wrona</h4>
+              <div class="text-sm font-light text-neutral-500"><p>From PostgreSQL to SQLite in Rails: Our Migration Journey, Challenges, and Lasting Trade-Offs</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/sava-lachezarov.jpg" alt="Sava Lachezarov" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Sava Lachezarov</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Let functional programming not disruby you</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/carmine-paolino.png" alt="Carmine Paolino" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Carmine Paolino</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Ruby Is the Best Language for Building AI Web Apps</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/marco-roth.jpg" alt="Marco Roth" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Marco Roth</h4>
+              <div class="text-sm font-light text-neutral-500"><p>HTML-Aware ERB: The Path to Reactive Rendering</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/julia-l-pez.png" alt="Julia López" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Julia López</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Beyond the Hype: Practical lessons in Long-Term Rails maintenance</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/bozhidar-batsov.jpg" alt="Bozhidar Batsov" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Bozhidar Batsov</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Ruby Got it Right: Lessons in Innovation for Everyone</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/andrey-sitnik.jpg" alt="Andrey Sitnik" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Andrey Sitnik</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Privacy-first architecture</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/stefan-kanev.jpg" alt="Stefan Kanev" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Stefan Kanev</h4>
+              <div class="text-sm font-light text-neutral-500"><p>The Joy and Agony of GraphQL</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/jeremy-smith.jpg" alt="Jeremy Smith" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Jeremy Smith</h4>
+              <div class="text-sm font-light text-neutral-500"><p>In Limbo: Managing Transitional States</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/denitsa-belogusheva.jpg" alt="Denitsa Belogusheva" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Denitsa Belogusheva</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Adapting and Thriving: Insights from a 16-Year Project Journey</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/martin-verzilli.jpg" alt="Martin Verzilli" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Martin Verzilli</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Sometimes you need to change to stay the same</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/micha-cicki.png" alt="Michał Łęcicki" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Michał Łęcicki</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Shit Happens: Handling Mistakes 101</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/pawe-strza-kowski.jpg" alt="Paweł Strzałkowski" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Paweł Strzałkowski</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Creativity: The only skill you need in the long term</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/franz-fischbach.jpg" alt="Franz Fischbach" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Franz Fischbach</h4>
+              <div class="text-sm font-light text-neutral-500"><p>CodeTracer - A new way to debug Ruby</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/stanislav-vasilev.jpg" alt="Stanislav Vasilev" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Stanislav Vasilev</h4>
+              <div class="text-sm font-light text-neutral-500"><p>CodeTracer - A new way to debug Ruby</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/yaroslav-shmarov.png" alt="Yaroslav Shmarov" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Yaroslav Shmarov</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Staying competitive</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/jasveen-sandral.png" alt="Jasveen Sandral" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Jasveen Sandral</h4>
+              <div class="text-sm font-light text-neutral-500"><p>The Long Game: Building for Forever in Ruby Core</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/nick-sutterer.png" alt="Nick Sutterer" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Nick Sutterer</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Trailblazer – the Almost sustainable underdog</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/xavier-noria.jpg" alt="Xavier Noria" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Xavier Noria</h4>
+              <div class="text-sm font-light text-neutral-500"><p>A Dateless Mindset</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/irina-nazarova.jpg" alt="Irina Nazarova" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Irina Nazarova</h4>
+              <div class="text-sm font-light text-neutral-500"><p>How to do well in consulting</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/radoslav-stankov.png" alt="Radoslav Stankov" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Radoslav Stankov</h4>
+              <div class="text-sm font-light text-neutral-500"><p>One engineer company with Ruby on Rails</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/stephen-margheim.png" alt="Stephen Margheim" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Stephen Margheim</h4>
+              <div class="text-sm font-light text-neutral-500"><p>How (and why) to run SQLite in production</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/cristian-planas.jpg" alt="Cristian Planas" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Cristian Planas</h4>
+              <div class="text-sm font-light text-neutral-500"><p>The history of a Rails monolith</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/anatoly-mikhaylov.png" alt="Anatoly Mikhaylov" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Anatoly Mikhaylov</h4>
+              <div class="text-sm font-light text-neutral-500"><p>The history of a Rails monolith</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/dimiter-petrov.jpg" alt="Dimiter Petrov" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Dimiter Petrov</h4>
+              <div class="text-sm font-light text-neutral-500"><p>20 years and going: making it as a consultancy</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/monica-giambitto.jpg" alt="Monica Giambitto" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Monica Giambitto</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Тоо much of a Good Thing</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/josef-strzibny.jpg" alt="Josef Strzibny" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Josef Strzibny</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Writing and marketing Deployment from Scratch</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/adrian-marin.jpg" alt="Adrian Marin" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Adrian Marin</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Build a business on Open Source and Ruby</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/br/speakers/aitor-garcia-rey.jpg" alt="Aitor Garcia Rey" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Aitor Garcia Rey</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Running a Fintech with Ruby</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/107/square/holman.png" alt="Zach Hollman" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Zach Hollman</h4>
+              <div class="text-sm font-light text-neutral-500"><p>During, Entrepreneur</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/099/square/dinah.jpg" alt="Dinah Shi" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Dinah Shi</h4>
+              <div class="text-sm font-light text-neutral-500"><p>University of Waterloo</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/102/square/jan.jpg" alt="Jan Krustisch" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Jan Krustisch</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Depfu</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/101/square/gabriela.jpg" alt="Gabriela Luhova" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Gabriela Luhova</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Tutuf</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/100/square/nynne.jpg" alt="Nynne Just Christoffersen" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Nynne Just Christoffersen</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Karnov Group</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/108/square/rmosolgo.png" alt="Robert Mosolgo" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Robert Mosolgo</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Github</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/105/square/sedar.jpg" alt="Serdar Doğruyol" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Serdar Doğruyol</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Kemal Framework</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/173/square/eileen.jpg" alt="Eileen Uchitelle" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Eileen Uchitelle</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Github</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/178/square/aaron.png" alt="Aaron Patterson" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Aaron Patterson</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Github</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/180/square/sergei.jpg" alt="Sergei Alekseenko" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Sergei Alekseenko</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Servers.com</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/179/square/kaja.jpg" alt="Kaja Santro" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Kaja Santro</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Absolventa GmbH</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/176/square/eli.jpg" alt="Eli Kroumova" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Eli Kroumova</h4>
+              <div class="text-sm font-light text-neutral-500"><p>eFaber</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/177/square/fernando.jpg" alt="Fernando Mendes" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Fernando Mendes</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Subvisual</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/172/square/edouard.jpg" alt="Edouard Chin" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Edouard Chin</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Shopify</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/174/square/amr.jpg" alt="Amr Abdelwahab" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Amr Abdelwahab</h4>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/182/square/yulia.jpg" alt="Yulia Oletskaya" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Yulia Oletskaya</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Oxagile</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/171/square/alexandre.jpg" alt="Alexandre Lairan" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Alexandre Lairan</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Plezi</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/181/square/souatro.jpg" alt="Soutaro Matsumoto" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Soutaro Matsumoto</h4>
+              <div class="text-sm font-light text-neutral-500"><p>Sider, Inc.</p></div>
+            </div>
+            <div class="text-center group">
+              <div class="relative w-full aspect-square mb-4 mx-auto max-w-[200px]">
+                <img src="/images/000/000/183/square/tung.jpg" alt="Tung Nguyen" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition duration-500">
+              </div>
+              <h4 class="font-bold text-lg mb-1 leading-tight">Tung Nguyen</h4>
+              <div class="text-sm font-light text-neutral-500"><p>BoltOps</p></div>
+            </div>
+        </div>
+      </section>
+
+      <section class="bg-white text-ink pt-24 pb-12 px-6 md:px-10">
+        <div class="max-w-container mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-4">Partners</h2>
+          <p class="text-lg font-light text-neutral-500 max-w-2xl mx-auto">The companies that make Balkan Ruby happen.</p>
+        </div>
+      </section>
+
+      <section class="bg-white text-ink pb-16 px-6 md:px-10">
+        <div class="max-w-container mx-auto">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-6">
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Dext">
+              <img src="/images/br/sponsors/dext.svg" alt="Dext" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="SwissCRM">
+              <img src="/images/br/sponsors/swisscrm.png" alt="SwissCRM" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Typesense">
+              <img src="/images/br/sponsors/typesense.svg" alt="Typesense" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Studio Raketa">
+              <img src="/images/br/sponsors/studio-raketa.svg" alt="Studio Raketa" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="AppSignal">
+              <img src="/images/br/sponsors/appsignal.png" alt="AppSignal" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="tutuf">
+              <img src="/images/br/sponsors/tutuf.svg" alt="tutuf" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="B2B Media Group">
+              <img src="/images/br/sponsors/b2b-media-group.svg" alt="B2B Media Group" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Intercom">
+              <img src="/images/br/sponsors/intercom.png" alt="Intercom" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="JetBrains">
+              <img src="/images/br/sponsors/jetbrains.png" alt="JetBrains" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Packt">
+              <img src="/images/br/sponsors/packt.svg" alt="Packt" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Avo">
+              <img src="/images/br/sponsors/avo.png" alt="Avo" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Sidekiq">
+              <img src="/images/br/sponsors/sidekiq.svg" alt="Sidekiq" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Evil Martians">
+              <img src="/images/br/sponsors/evil-martians.svg" alt="Evil Martians" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Harvest">
+              <img src="/images/br/sponsors/harvest.png" alt="Harvest" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Visuality">
+              <img src="/images/br/sponsors/visuality.svg" alt="Visuality" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Manas.Tech">
+              <img src="/images/br/sponsors/manas-tech.svg" alt="Manas.Tech" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Honeybadger">
+              <img src="/images/br/sponsors/honeybadger.png" alt="Honeybadger" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Plan A">
+              <img src="/images/br/sponsors/plan-a.svg" alt="Plan A" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Trailblazer">
+              <img src="/images/br/sponsors/trailblazer.png" alt="Trailblazer" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Zendesk">
+              <img src="/images/br/sponsors/zendesk.png" alt="Zendesk" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Test.io">
+              <img src="/images/br/sponsors/test-io.png" alt="Test.io" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Receipt Bank">
+              <img src="/images/000/000/112/original/receipt-bank-logo.svg" alt="Receipt Bank" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="emerchantpay">
+              <img src="/images/000/000/063/original/emerchantpay-logo.svg" alt="emerchantpay" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Catawiki">
+              <img src="/images/000/000/047/original/catawiki-logo.svg" alt="Catawiki" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="GitHub">
+              <img src="/images/000/000/066/original/github-logo.svg" alt="GitHub" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Funding Circle">
+              <img src="/images/000/000/065/original/funding-circle-logo.svg" alt="Funding Circle" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Questers">
+              <img src="/images/000/000/067/original/questers-logo.svg" alt="Questers" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Cookpad">
+              <img src="/images/000/000/170/original/site-cookpad.svg" alt="Cookpad" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+            <div class="flex items-center justify-center h-24 px-4 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300" title="Acronis">
+              <img src="/images/000/000/169/original/site-acronis.svg" alt="Acronis" class="h-9 w-auto max-w-[160px] object-contain">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-white text-ink pt-4 pb-24 px-6 md:px-10 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-lg md:text-xl font-light text-neutral-600 mb-10 leading-relaxed"><p>Interested in sponsoring Balkan Ruby? We'd love to tell you more about the packages and how you can get involved.</p></div>
+          <a href="mailto:hi@balkanruby.com?subject=Sponsorship" class="inline-block bg-black text-white font-semibold px-8 py-4 rounded-sm hover:opacity-80 transition">Get in touch</a>
+        </div>
+      </section>
+
+
+      <section class="bg-paper text-ink pt-24 pb-12 px-6 md:px-10">
+        <div class="max-w-container mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-black mb-4">Latest news about Balkan Ruby</h2>
+        </div>
+      </section>
+
+      <section class="bg-paper text-ink pb-24 px-6 md:px-10">
+        <div class="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="group flex flex-col h-full bg-white rounded overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+              <a href="https://balkanruby.com/" target="_blank" rel="noopener" class="block aspect-video overflow-hidden">
+                <img src="/images/000/000/094/card_horizontal/37879446982_07ea03bd06_o.jpg" alt="Balkan Ruby is back" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </a>
+              <div class="p-8 flex flex-col flex-grow">
+                <h3 class="text-xl font-bold mb-3 leading-snug"><a href="https://balkanruby.com/" target="_blank" rel="noopener" class="hover:opacity-70 transition">Balkan Ruby is back</a></h3>
+                <div class="text-base font-light text-neutral-600 leading-relaxed"><p>After a five-year break, Balkan Ruby returned in 2024 and has run every year since. Catch up on the latest edition in Sofia.</p></div>
+              </div>
+            </div>
+            <div class="group flex flex-col h-full bg-white rounded overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+              <a href="https://balkanruby.com/blogs/12" target="_blank" rel="noopener" class="block aspect-video overflow-hidden">
+                <img src="/images/br/news/balkan-ruby-101.png" alt="Balkan Ruby 101" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </a>
+              <div class="p-8 flex flex-col flex-grow">
+                <h3 class="text-xl font-bold mb-3 leading-snug"><a href="https://balkanruby.com/blogs/12" target="_blank" rel="noopener" class="hover:opacity-70 transition">Balkan Ruby 101</a></h3>
+                <div class="text-base font-light text-neutral-600 leading-relaxed"><p>101 things to know about the latest Balkan Ruby — from the Ruby Banitsa meetup to the venue and the after-party.</p></div>
+              </div>
+            </div>
+            <div class="group flex flex-col h-full bg-white rounded overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+              <a href="https://balkanruby.com/blogs/11" target="_blank" rel="noopener" class="block aspect-video overflow-hidden">
+                <img src="/images/br/news/avoid-the-general-case.png" alt="Avoid the general case" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              </a>
+              <div class="p-8 flex flex-col flex-grow">
+                <h3 class="text-xl font-bold mb-3 leading-snug"><a href="https://balkanruby.com/blogs/11" target="_blank" rel="noopener" class="hover:opacity-70 transition">Avoid the general case</a></h3>
+                <div class="text-base font-light text-neutral-600 leading-relaxed"><p>This year Neuvents turns 10 — a whole decade of running Ruby events. A short reflection on the journey.</p></div>
+              </div>
+            </div>
+        </div>
+      </section>
+
+  </main>
+
+  
+  <footer class="bg-ink text-white mt-auto">
+    <div class="max-w-container mx-auto px-6 md:px-10 pt-16 pb-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-14 border-b border-white/10">
+        <div class="md:col-span-5">
+          <img src="/images/000/000/050/original/logo-simple-white-sm.svg" alt="Neuvents" class="h-9 mb-5">
+          <p class="text-sm text-white/60 leading-relaxed max-w-xs mb-6">Organizing community tech events and conferences in south-eastern Europe since 2016.</p>
+          <form action="//balkanruby.us16.list-manage.com/subscribe/post?u=690a4f9d71c3a29f39792b453&amp;id=d13d0bd575" method="post" target="_blank" novalidate class="max-w-[260px]">
+            <label for="footer-email" class="block text-[11px] font-bold uppercase tracking-[0.18em] text-white/40 mb-2.5">Subscribe for news</label>
+            <div class="flex">
+              <input id="footer-email" type="email" name="EMAIL" required placeholder="you@awesome.conf" class="min-w-0 flex-1 bg-white/5 border border-white/15 rounded-l-md px-3.5 py-2 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/40 transition">
+              <div style="position:absolute;left:-5000px" aria-hidden="true"><input type="text" name="b_690a4f9d71c3a29f39792b453_d13d0bd575" tabindex="-1" value=""></div>
+              <button type="submit" name="subscribe" class="shrink-0 bg-white text-ink text-sm font-semibold px-4 py-2 rounded-r-md hover:bg-neutral-200 transition">Subscribe</button>
+            </div>
+          </form>
+        </div>
+        <div class="md:col-span-3">
+          <h4 class="text-xs font-bold uppercase tracking-[0.18em] text-white/40 mb-5">Events</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li><a href="/balkan-ruby" class="hover:text-white transition">Balkan Ruby</a></li>
+            <li><a href="/partial-conf" class="hover:text-white transition">Partial Conf</a></li>
+            <li><a href="/ruby-banitsa" class="hover:text-white transition">Ruby Banitsa</a></li>
+            <li><a href="/euruko-2016" class="hover:text-white transition">Euruko 2016</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <h4 class="text-xs font-bold uppercase tracking-[0.18em] text-white/40 mb-5">Company</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li><a href="/contacts" class="hover:text-white transition">Contacts</a></li>
+            <li><a href="/legal-information" class="hover:text-white transition">Legal</a></li>
+            <li><a href="/privacy" class="hover:text-white transition">Privacy</a></li>
+            <li><a href="/returns" class="hover:text-white transition">Returns</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <h4 class="text-xs font-bold uppercase tracking-[0.18em] text-white/40 mb-5">Community</h4>
+          <ul class="space-y-3 text-sm text-white/80">
+            <li><a href="http://berlincodeofconduct.org/" target="_blank" rel="noopener" class="hover:text-white transition">Code of Conduct</a></li>
+            <li><a href="mailto:hi@neuvents.com" class="hover:text-white transition">hi@neuvents.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
+        <p>© 2018. Neuvents Ltd.</p>
+        <p>launched by <a href="http://raketadesign.com" target="_blank" rel="noopener" class="text-white/80 hover:text-white transition underline underline-offset-2">raketa</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.swiper-container:not(.gallery-slider)').forEach(el => {
+        new Swiper(el, {
+          loop: true,
+          autoplay: { delay: parseInt(el.dataset.autoplay) || 5000, disableOnInteraction: false },
+          pagination: { el: el.querySelector('.swiper-pagination'), clickable: true },
+          navigation: { nextEl: el.querySelector('.swiper-button-next'), prevEl: el.querySelector('.swiper-button-prev') },
+        });
+      });
+      document.querySelectorAll('.gallery-slider').forEach(el => {
+        new Swiper(el, {
+          loop: true,
+          slidesPerView: 1,
+          spaceBetween: 16,
+          breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+          pagination: { el: el.parentElement.querySelector('.swiper-pagination'), clickable: true },
+        });
+      });
+
+      const header = document.getElementById('site-header');
+      if (header) {
+        const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 60);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            const open = menu.classList.toggle('hidden') === false;
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.querySelector('.menu-open').classList.toggle('hidden', open);
+            toggle.querySelector('.menu-close').classList.toggle('hidden', !open);
+            if (open) header.classList.add('scrolled'); else onScroll();
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

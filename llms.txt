@@ -1,0 +1,17 @@
+# Neuvents
+
+> Neuvents is a Sofia, Bulgaria based organization specializing in community tech events and conferences across South-Eastern Europe.
+
+## Overview
+Neuvents was founded in 2016 and organizes tech conferences, meetups, and community gatherings including Euruko 2016, Partial Conf, Balkan Ruby, and Ruby Banitsa.
+
+## Key Events & Pages
+- [Homepage](https://neuvents.com/): Overview of Neuvents, our mission, and community tech events.
+- [Balkan Ruby](https://neuvents.com/balkan-ruby): The premier Ruby conference in the Balkan region.
+- [Partial Conf](https://neuvents.com/partial-conf): Conference on modern functional programming languages and web technologies.
+- [Ruby Banitsa](https://neuvents.com/ruby-banitsa): Local Ruby meetup in Sofia, Bulgaria.
+- [Euruko 2016](https://neuvents.com/euruko-2016): European Ruby Conference held in Sofia in 2016.
+- [Contacts](https://neuvents.com/contacts): Get in touch with Neuvents event organizers.
+- [Legal Information](https://neuvents.com/legal-information): Company information, registration details, and team.
+- [Privacy Policy](https://neuvents.com/privacy): Privacy policy and data handling guidelines.
+- [Return Policy](https://neuvents.com/returns): Ticket returns and refund policies.
